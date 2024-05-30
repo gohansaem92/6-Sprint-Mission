@@ -29,6 +29,24 @@ const MainItemList = () => {
     const { list } = await getItems(orderBy, page, pageSize);
     setMainItem(list);
   };
+  // 페이지 네이션 구현
+  // 먼저 다음페이지 api 요청하기 요거는 nextPage 스테이트 필요하갰고 바뀌면 해당 api 요청
+  // 화면 랜더링 해주기 요청되면 list 바꿔주기
+  // 숫자 버튼에 핸들러 연결해주기 화살표 버튼은 지금 숫자 숫자보다 +-1 해주고 1이거나 마지막이면 조건 걸어주기
+  const handlePagenation = (e) => {
+    // const value = Number(e.target.value);
+    // if (!isNaN(value)) {
+    //   setPage(value);
+    // }
+    console.log(e.target.value);
+    if (e.target.value === "previousPage") {
+      setPage((prev) => prev - 1);
+    }
+    // if (e.target.value === "nextPage") {
+    //   setPage((prev) => prev + 1);
+    // }
+  };
+
   useEffect(() => {
     const handleResize = () => {
       setPageSize(getPageSize());
@@ -68,7 +86,7 @@ const MainItemList = () => {
           return <ItemBox key={item.id} item={item} />;
         })}
       </div>
-      <PagenationBar />
+      <PagenationBar onChange={handlePagenation} />
     </section>
   );
 };
