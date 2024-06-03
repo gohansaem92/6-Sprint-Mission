@@ -1,13 +1,21 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-export default function DropDown({ order = "recent", onChangeOrder }) {
+interface DropDownProps {
+  order?: string;
+  onChangeOrder: (order: string) => void;
+}
+
+const DropDown: React.FC<DropDownProps> = ({
+  order = "recent",
+  onChangeOrder,
+}) => {
   const [isDropDown, setIsDropDown] = useState(false);
   const [localOrder, setLocalOrder] = useState(order);
 
   const handleDropDown = () => {
     setIsDropDown(!isDropDown);
   };
-  const handleOptionClick = (order) => {
+  const handleOptionClick = (order: string) => {
     setLocalOrder(order);
     onChangeOrder(order);
     setIsDropDown(false);
@@ -26,4 +34,6 @@ export default function DropDown({ order = "recent", onChangeOrder }) {
       )}
     </>
   );
-}
+};
+
+export default DropDown;

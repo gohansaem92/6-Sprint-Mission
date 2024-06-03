@@ -1,27 +1,31 @@
 import BoardItem from "@/components/BoardItem";
 import DropDown from "@/components/DropDown";
 import SearchForm from "@/components/SearchForm";
-import axios from "@/lib/axiox";
+import axios from "@/lib/axios";
 import { useEffect, useState } from "react";
 
+interface Article {
+  id: number;
+}
+
 export default function BoardPage() {
-  const [boardList, setBoardList] = useState([]);
-  const [bestList, setBestList] = useState([]);
-  const [keyword, setKeyword] = useState("");
-  const [orderBy, setOrderBy] = useState("recent");
+  const [boardList, setBoardList] = useState<Article[]>([]);
+  const [bestList, setBestList] = useState<Article[]>([]);
+  const [keyword, setKeyword] = useState<string>("");
+  const [orderBy, setOrderBy] = useState<string>("recent");
 
   async function getBoardList(page = 1, pageSize = 10) {
     const res = await axios.get(
       `/articles?page=${page}&pageSize=${pageSize}&orderBy=${orderBy}&keyword=${keyword}`
     );
-    const nextActicles = res.data.list ?? [];
+    const nextActicles: Article[] = res.data.list ?? [];
     setBoardList(nextActicles);
   }
   async function getBestList(page = 1, pageSize = 3) {
     const res = await axios.get(
       `/articles?page=${page}&pageSize=${pageSize}&orderBy=like`
     );
-    const nextBestList = res.data.list ?? [];
+    const nextBestList: Article[] = res.data.list ?? [];
     setBestList(nextBestList);
   }
 

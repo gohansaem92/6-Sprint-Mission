@@ -1,4 +1,5 @@
 import SearchForm from "@/components/SearchForm";
+
 import { useRouter } from "next/router";
 
 export default function MarketPage() {
@@ -9,7 +10,7 @@ export default function MarketPage() {
   return (
     <>
       <h2>중고 마켓 구경 하실래요</h2>
-      <SearchForm initvalue={searchQuery} />
+      <SearchForm keyword={searchQuery} />
       <h2>{q} 검색결과</h2>
     </>
   );
