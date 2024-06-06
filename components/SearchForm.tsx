@@ -22,6 +22,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
 
     if (!value) {
       router.push("/boards");
+      onChangeKeyword(" ");
       return;
     }
     if (onChangeKeyword) {

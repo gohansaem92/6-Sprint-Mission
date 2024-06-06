@@ -1,7 +1,9 @@
+import BlueButton from "@/components/BlueButton";
 import BoardItem from "@/components/BoardItem";
 import DropDown from "@/components/DropDown";
 import SearchForm from "@/components/SearchForm";
 import axios from "@/lib/axios";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 interface Article {
@@ -39,8 +41,7 @@ export default function BoardPage() {
 
   return (
     <>
-      <SearchForm keyword={keyword} onChangeKeyword={setKeyword} />
-      <DropDown order={orderBy} onChangeOrder={setOrderBy} />
+      <h2>베스트 게시글</h2>
       <ul>
         {bestList.map((article) => {
           return (
@@ -51,6 +52,12 @@ export default function BoardPage() {
           );
         })}
       </ul>
+      <SearchForm keyword={keyword} onChangeKeyword={setKeyword} />
+      <DropDown order={orderBy} onChangeOrder={setOrderBy} />
+      <h2>게시글</h2>
+      <Link href="/addboard">
+        <BlueButton>글쓰기</BlueButton>
+      </Link>
       <ul>
         {boardList.map((article) => {
           return (
