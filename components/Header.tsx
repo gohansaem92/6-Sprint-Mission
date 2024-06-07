@@ -14,6 +14,7 @@ export default function Header() {
               alt="Home Logo"
               width={153}
               height={51}
+              priority
             />
           </Link>
           <Link href="/boards">
